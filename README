@@ -1,0 +1,22 @@
+# POC of an executable rust shared lib
+
+For now only work on linux x86 and aarch64
+
+To build
+
+```
+./build.sh build <target>
+```
+
+This will produce two objects in the `./build` directory
+
+* `libself_executable_dynlib.so`, a shared library that should also be executable
+
+* `main_bin` a binary dynamically linked to `libself_executable_dynlib`, that call into it to fork and
+execute itself
+
+Run with 
+
+```
+LD_LIBRARY_PATH="./build:$LD_LIBRARY_PATH" ./build/main_bin
+```
